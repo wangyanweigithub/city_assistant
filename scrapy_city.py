@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Form(object):
+class Ui_Scrapy(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(652, 561)
@@ -17,15 +17,19 @@ class Ui_Form(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
+        self.frame.setStyleSheet("QFrame{ background-color:#e76464;}")
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(20, 5, 81, 31))
         self.label.setObjectName("label")
+        self.label.setStyleSheet("QLabel{color:#ffffff;}")
         self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setGeometry(QtCore.QRect(110, 11, 54, 20))
         self.label_2.setObjectName("label_2")
+        self.label_2.setStyleSheet("QLabel{color:#ffffff;}")
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(185, 12, 81, 20))
         self.label_3.setObjectName("label_3")
+        self.label_3.setStyleSheet("QLabel{color:#ffffff;}")
         self.label_4 = QtWidgets.QLabel(self.frame)
         self.label_4.setGeometry(QtCore.QRect(300, 15, 54, 12))
         self.label_4.setObjectName("label_4")
@@ -72,7 +76,7 @@ class Ui_Form(object):
         self.label_4.setText(_translate("Form", "切换账户"))
         self.comboBox.setItemText(0, _translate("Form", "杭州"))
         self.comboBox_2.setItemText(0, _translate("Form", "滨江区"))
-        self.label_5.setText(_translate("Form", "-----------------------------------------------"))
+        self.label_5.setText(_translate("Form", "---------" * 50))
         self.pushButton.setText(_translate("Form", "全部"))
         self.pushButton_2.setText(_translate("Form", "腾讯房产"))
         self.pushButton_3.setText(_translate("Form", "房天下"))
