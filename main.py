@@ -1,7 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QDialog, QWidget
 from login import Ui_Dialog
-from all_citys_a import Ui_AllCitys
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

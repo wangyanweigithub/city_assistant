@@ -39,6 +39,7 @@ class Ui_Dialog(object):
         self.account.setGeometry(QtCore.QRect(90, 60, 250, 20))
         self.account.setObjectName("account")
         self.password = QLineEdit(Dialog)
+        self.password.setEchoMode(QLineEdit.Password)
         self.password.setGeometry(QtCore.QRect(90, 110, 250, 20))
         self.password.setObjectName("password")
         self.login_button = QPushButton(Dialog)
