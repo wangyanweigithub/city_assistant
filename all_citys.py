@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'all_citys.ui'
+#
+# Created by: PyQt5 UI code generator 5.10.1
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_AllCitys(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(871, 800)
+        Form.setStyleSheet("")
+        self.title = QtWidgets.QFrame(Form)
+        self.title.setGeometry(QtCore.QRect(0, 0, 871, 41))
+        self.title.setStyleSheet("QFrame#title{\n"
+"    background-color:color:#e3bd96;\n"
+"}")
+        self.title.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.title.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.title.setObjectName("title")
+        self.label = QtWidgets.QLabel(self.title)
+        self.label.setGeometry(QtCore.QRect(0, 0, 101, 41))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.title)
+        self.label_2.setGeometry(QtCore.QRect(110, 0, 51, 31))
+        self.label_2.setObjectName("label_2")
+        self.label_9 = QtWidgets.QLabel(self.title)
+        self.label_9.setGeometry(QtCore.QRect(160, 10, 81, 16))
+        self.label_9.setObjectName("label_9")
+        self.label_10 = QtWidgets.QLabel(self.title)
+        self.label_10.setGeometry(QtCore.QRect(240, 10, 54, 12))
+        self.label_10.setObjectName("label_10")
+        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3.setGeometry(QtCore.QRect(70, 80, 54, 12))
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(Form)
+        self.label_4.setGeometry(QtCore.QRect(70, 110, 121, 16))
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(Form)
+        self.label_5.setGeometry(QtCore.QRect(220, 110, 16, 16))
+        self.label_5.setObjectName("label_5")
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(60, 100, 561, 41))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.toolBox = QtWidgets.QToolBox(Form)
+        self.toolBox.setGeometry(QtCore.QRect(150, 460, 69, 121))
+        self.toolBox.setObjectName("toolBox")
+        self.page = QtWidgets.QWidget()
+        self.page.setGeometry(QtCore.QRect(0, 0, 69, 69))
+        self.page.setObjectName("page")
+        self.toolBox.addItem(self.page, "")
+        self.page_2 = QtWidgets.QWidget()
+        self.page_2.setGeometry(QtCore.QRect(0, 0, 69, 69))
+        self.page_2.setObjectName("page_2")
+        self.toolBox.addItem(self.page_2, "")
+        self.groupBox = QtWidgets.QGroupBox(Form)
+        self.groupBox.setGeometry(QtCore.QRect(50, 160, 791, 131))
+        self.groupBox.setObjectName("groupBox")
+        self.label_6 = QtWidgets.QLabel(self.groupBox)
+        self.label_6.setGeometry(QtCore.QRect(20, 30, 21, 31))
+        self.label_6.setObjectName("label_6")
+        self.label_7 = QtWidgets.QLabel(self.groupBox)
+        self.label_7.setGeometry(QtCore.QRect(70, 30, 54, 12))
+        self.label_7.setObjectName("label_7")
+        self.scrollArea = QtWidgets.QScrollArea(Form)
+        self.scrollArea.setGeometry(QtCore.QRect(410, 380, 120, 80))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 118, 78))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton.setGeometry(QtCore.QRect(70, 30, 75, 23))
+        self.pushButton.setObjectName("pushButton")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.retranslateUi(Form)
+        self.toolBox.setCurrentIndex(0)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label.setText(_translate("Form", "楼盘助手1.0"))
+        self.label_2.setText(_translate("Form", "用户名："))
+        self.label_9.setText(_translate("Form", "12345678910"))
+        self.label_10.setText(_translate("Form", "切换用户"))
+        self.label_3.setText(_translate("Form", "选择城市"))
+        self.label_4.setText(_translate("Form", "按拼音部首字母选择:"))
+        self.label_5.setText(_translate("Form", "A"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), _translate("Form", "Page 1"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), _translate("Form", "Page 2"))
+        self.groupBox.setTitle(_translate("Form", "GroupBox"))
+        self.label_6.setText(_translate("Form", "A"))
+        self.label_7.setText(_translate("Form", "TextLabel"))
+        self.pushButton.setText(_translate("Form", "PushButton"))
+
