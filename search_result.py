@@ -138,7 +138,7 @@ class Ui_Result_Srcapy(object):
             self.dele_files()
             new_window = QtWidgets.QDialog()
             self.setupUi(new_window)
-            new_window.show()
+            new_window.exec()
         #
         else:
             print("Not dele file")
