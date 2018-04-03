@@ -6,14 +6,17 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from search_result import Ui_Result_Srcapy
+from tools import get_pid_finish
+from PyQt5.QtCore import QTimer
 
 class Ui_Scrapy(object):
-    def setupUi(self, Form):
+    def setupUi(self, Form, pid):
         Form.setObjectName("Form")
         Form.resize(652, 561)
         self.form = Form
+        self.scrapy_pid = pid
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 761, 41))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -68,6 +71,11 @@ class Ui_Scrapy(object):
         self.label_6.setGeometry(QtCore.QRect(210, 260, 141, 21))
         self.label_6.setObjectName("label_6")
 
+        self.timer = QTimer()
+        self.timer.setInterval(10000)
+        self.timer.start()
+        self.timer.timeout.connect(self.check_scrapy_finished)
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -87,12 +95,19 @@ class Ui_Scrapy(object):
         self.pushButton_4.setText(_translate("Form", "透明房产"))
         self.label_6.setText(_translate("Form", "加载数据中"))
 
-    def show_scrapy_result(self):
+    def check_scrapy_finished(self):
+        pid_finshed = get_pid_finish(self.scrapy_pid)
+        if pid_finshed:
+            self.scrapy_complete()
+
+    def scrapy_complete(self):
         self.form.close()
-        result_win = QtWidgets.QWidget()
-        ui = Ui_Result_Srcapy()
-        ui.setupUi(result_win)
-        result_win.exec()
+        scrapy_result = QtWidgets.QDialog()
+        scrapy_ui = Ui_Result_Srcapy()
+        scrapy_ui.setupUi(scrapy_result)
+        scrapy_result.exec()
+
+
 
 
 

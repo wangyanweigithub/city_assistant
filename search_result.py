@@ -89,7 +89,7 @@ class Ui_Result_Srcapy(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         for num, name in enumerate(commus):
-            commu_label = ButtonLabel(self.scrollAreaWidgetContents, self)
+            commu_label = ButtonLabel(self.scrollAreaWidgetContents)
             commu_label.setGeometry(
                 QtCore.QRect(40 + num % num_per_line * 210, 10 + num // num_per_line * 60, 200, 50))
             commu_label.setObjectName("commu" + str(num))
@@ -125,9 +125,6 @@ class Ui_Result_Srcapy(object):
         for num, name in enumerate(self.get_communitys()):
             getattr(self, "commu" + str(num)).setText(_translate("Form", name))
         self.pushButton_4.setText(_translate("Form", "确认"))
-
-    def label_choose(self):
-        print("aslkjflad")
 
     def get_communitys(self):
         return get_all_community(self.city, self.area)

@@ -1,8 +1,6 @@
-import time
 import os
 import shutil
 import psutil
-from PyQt5.QtCore import pyqtSignal
 from PyQt5.Qt import Qt
 from PyQt5 import QtWidgets
 from setting import PathHelp
@@ -10,15 +8,13 @@ from setting import PathHelp
 
 
 class ButtonLabel(QtWidgets.QLabel):
-    _click = pyqtSignal()
 
-    def __init__(self, parent=None, main_window=None):
+    def __init__(self, parent=None):
         super(ButtonLabel, self).__init__(parent)
         self.choosed = False
         # self.setStyleSheet("QLabel{ border: 1px solid  #ff0000;background: gray}")
         self.setStyleSheet("QLabel{ background: #EEE8CD}")
         self.setAlignment(Qt.AlignCenter)
-        self._click.connect(main_window.label_choose)
 
     def mouseReleaseEvent(self, QMouseEvent):
         self.choosed = not self.choosed
@@ -27,13 +23,11 @@ class ButtonLabel(QtWidgets.QLabel):
         else:
             self.setStyleSheet("QLabel{ background: #EEE8CD}")
 
-def get_pid_finish(pid, time_sec):
+def get_pid_finish(pid):
     pids = list(map(lambda x:x.pid, psutil.process_iter()))
-    while True:
-        if pid not in pids:
-            return True
-        time.sleep(time_sec)
-
+    if pid not in pids:
+        return True
+    return False
 
 def get_all_community(city, area):
     path = os.path.join(PathHelp.tencent_result, city, area)

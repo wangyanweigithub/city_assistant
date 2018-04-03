@@ -6,15 +6,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 import os
-import time
 from subprocess import Popen
-from scrapy import cmdline
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from setting import Common, PathHelp
-from tools import get_pid_finish
-from PyQt5.QtCore import QThread, pyqtSignal, QProcess
 from scrapy_city import Ui_Scrapy
-from search_result import Ui_Result_Srcapy
+
 
 class Ui_Area(object):
     def setupUi(self, Form, city="杭州"):
@@ -103,21 +99,12 @@ class Ui_Area(object):
         if source in Common.data_source:
             self.start_scrapy(source)
 
-    def work(self):
-        conf = os.path.join(PathHelp.tencent_path, "conf.txt")
-        with open(conf, 'w') as f:
-            f.write("hello\n")
-
-        print(os.listdir(os.getcwd()))
-        cmdline.execute("scrapy crawl dbhouse".split())
-        print("scrapy completed")
-
     def start_scrapy(self, source):
-        conf = os.path.join(PathHelp.tencent_path, "conf.txt")
-        with open(conf, 'w') as f:
-            f.write("hello\n")
-        # code = Popen("python start.py", cwd=PathHelp.tencent_path)
-        code = Popen("python a.py", cwd=PathHelp.tencent_path)
+        # conf = os.path.join(PathHelp.tencent_path, "conf.txt")
+        # with open(conf, 'w') as f:
+        #     f.write("hello\n")
+        code = Popen("python start.py", cwd=PathHelp.tencent_path)
+        # code = Popen("python a.py", cwd=PathHelp.tencent_path)
         if code.returncode:
             raise("Scrapy Wrong")
         print("pid is ", code.pid)
@@ -125,48 +112,8 @@ class Ui_Area(object):
         self.form.close()
         self.wati_scrapy = QtWidgets.QDialog()
         scrapy_ui = Ui_Scrapy()
-        scrapy_ui.setupUi(self.wati_scrapy)
+        scrapy_ui.setupUi(self.wati_scrapy, code.pid)
         self.wati_scrapy.exec()
-        self.scrapy_complete()
-
-    def check_scrapy_finished(self, pid):
-        pid_finshed = get_pid_finish(pid, 10)
-        if pid_finshed:
-            self.scrapy_complete()
-
-    def scrapy_complete(self):
-        self.wati_scrapy.close()
-        scrapy_result = QtWidgets.QDialog()
-        scrapy_ui = Ui_Result_Srcapy()
-        scrapy_ui.setupUi(scrapy_result)
-        scrapy_result.exec()
-
-
-# class ScrapyThread(QProcess):
-#     trigger = pyqtSignal()
-#
-#     def __init__(self, Form):
-#         super(ScrapyThread, self).__init__()
-#         self.form = Form
-#
-#     def run(self):
-#         try:
-#             conf = os.path.join(PathHelp.tencent_path,"conf.txt")
-#             with open(conf, 'w') as f:
-#                 f.write("hello")
-#             os.chdir(PathHelp.tencent_path)
-#             print(os.listdir(os.getcwd()))
-#             cmdline.execute("scrapy crawl dbhouse".split())
-#             print("scrapy completed")
-#             import time
-#             time.sleep(1000)
-#             print("aasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
-#             print("time")
-#             # self.trigger.connect(self.form.scrapy_complete)
-#             self.trigger.emit()
-#         except Exception as e:
-#             print(e)
-
 
 
 
