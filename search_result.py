@@ -94,7 +94,7 @@ class Ui_Result_Srcapy(object):
                 QtCore.QRect(40 + num % num_per_line * 210, 10 + num // num_per_line * 60, 200, 50))
             commu_label.setObjectName("commu" + str(num))
             setattr(self, "commu" + str(num), commu_label)
-
+        self.label_8.setText(str(len(commus)))
         self.pushButton_4 = QtWidgets.QPushButton(Form)
         self.pushButton_4.setGeometry(QtCore.QRect(400, 830, 120, 40))
         self.pushButton_4.setObjectName("pushButton_4")
@@ -119,7 +119,7 @@ class Ui_Result_Srcapy(object):
         self.pushButton_5.setText(_translate("Form", "透明房产"))
         self.label_6.setText(_translate("Form", "搜索结果"))
         self.label_7.setText(_translate("Form", "搜索到"))
-        self.label_8.setText(_translate("Form", "15"))
+        # self.label_8.setText(_translate("Form", "15"))
         self.label_9.setText(_translate("Form", "条信息"))
         self.label_10.setText(_translate("Form", "重置"))
         for num, name in enumerate(self.get_communitys()):
@@ -136,12 +136,13 @@ class Ui_Result_Srcapy(object):
         reply = QtWidgets.QMessageBox.question(self.form, "提示", "是否删除多余数据?",
                                                QtWidgets.QMessageBox.Yes, QtWidgets.QMessageBox.No)
         if reply == QtWidgets.QMessageBox.Yes:
+            print("delete")
             self.form.close()
             self.dele_files()
             new_window = QtWidgets.QDialog()
             self.setupUi(new_window)
-            new_window.exec()
-
+            new_window.show()
+        #
         else:
             print("Not dele file")
 
