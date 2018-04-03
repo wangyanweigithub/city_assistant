@@ -17,9 +17,10 @@ class MyLabel(QtWidgets.QLabel):
         super(MyLabel, self).__init__(parent)
         self.city_clicked.connect(main_window.choose_city)
 
-    def mousePressEvent(self, e):
-        print("you clicked the label")
+    def mouseReleaseEvent(self, e):
         self.city_clicked.emit(self.text())
+
+
 
 
 class CitysShow(object):

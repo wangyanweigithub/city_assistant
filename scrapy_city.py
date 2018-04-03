@@ -7,11 +7,13 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from search_result import Ui_Result_Srcapy
 
 class Ui_Scrapy(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(652, 561)
+        self.form = Form
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 761, 41))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -57,8 +59,10 @@ class Ui_Scrapy(object):
         self.pushButton_4.setGeometry(QtCore.QRect(370, 160, 91, 31))
         self.pushButton_4.setObjectName("pushButton_4")
         self.progressBar = QtWidgets.QProgressBar(Form)
-        self.progressBar.setGeometry(QtCore.QRect(170, 290, 118, 23))
-        self.progressBar.setProperty("value", 24)
+        self.progressBar.setGeometry(QtCore.QRect(170, 290, 300, 23))
+        # self.progressBar.setProperty("value", 10)
+        self.progressBar.setMaximum(0);
+        self.progressBar.setMinimum(0);
         self.progressBar.setObjectName("progressBar")
         self.label_6 = QtWidgets.QLabel(Form)
         self.label_6.setGeometry(QtCore.QRect(210, 260, 141, 21))
@@ -82,4 +86,14 @@ class Ui_Scrapy(object):
         self.pushButton_3.setText(_translate("Form", "房天下"))
         self.pushButton_4.setText(_translate("Form", "透明房产"))
         self.label_6.setText(_translate("Form", "加载数据中"))
+
+    def show_scrapy_result(self):
+        self.form.close()
+        result_win = QtWidgets.QWidget()
+        ui = Ui_Result_Srcapy()
+        ui.setupUi(result_win)
+        result_win.exec()
+
+
+
 

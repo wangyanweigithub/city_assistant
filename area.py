@@ -6,14 +6,15 @@
 #
 # WARNING! All changes made in this file will be lost!
 import os
+import time
 from subprocess import Popen
 from scrapy import cmdline
 from PyQt5 import QtCore, QtGui, QtWidgets
 from setting import Common, PathHelp
+from tools import get_pid_finish
 from PyQt5.QtCore import QThread, pyqtSignal, QProcess
 from scrapy_city import Ui_Scrapy
 from search_result import Ui_Result_Srcapy
-from setting import Common
 
 class Ui_Area(object):
     def setupUi(self, Form, city="杭州"):
@@ -115,12 +116,23 @@ class Ui_Area(object):
         conf = os.path.join(PathHelp.tencent_path, "conf.txt")
         with open(conf, 'w') as f:
             f.write("hello\n")
-        # Popen("python start.py", cwd=PathHelp.tencent_path)
+        # code = Popen("python start.py", cwd=PathHelp.tencent_path)
+        code = Popen("python a.py", cwd=PathHelp.tencent_path)
+        if code.returncode:
+            raise("Scrapy Wrong")
+        print("pid is ", code.pid)
+
         self.form.close()
         self.wati_scrapy = QtWidgets.QDialog()
         scrapy_ui = Ui_Scrapy()
         scrapy_ui.setupUi(self.wati_scrapy)
         self.wati_scrapy.exec()
+        self.scrapy_complete()
+
+    def check_scrapy_finished(self, pid):
+        pid_finshed = get_pid_finish(pid, 10)
+        if pid_finshed:
+            self.scrapy_complete()
 
     def scrapy_complete(self):
         self.wati_scrapy.close()

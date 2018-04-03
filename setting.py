@@ -1,4 +1,5 @@
-
+import psutil
+import time
 
 class Common(object):
     login = {"success":"1100", "1102":"token不存在或不能为空", "1103":"key不正确",
@@ -52,4 +53,10 @@ class Common(object):
 
 class PathHelp(object):
     tencent_path = "E:\\work2\\scrapy"
+    tencent_result = "E:\\腾讯房产"
+
+
+
+
+
 
