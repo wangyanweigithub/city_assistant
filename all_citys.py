@@ -4,7 +4,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 import string
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QFont
 from setting import Common
 from PyQt5.QtCore import pyqtSignal
 from area import Ui_Area
@@ -32,10 +33,13 @@ class CitysShow(object):
         # self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setStyleSheet("QScrollArea{border:none;}")
         self.scrollArea.setObjectName("scrollArea")
+
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 800, 3500))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.scrollArea.verticalScrollBar().setValue(500)
+
 
         group_box_high = 0
         num_per_line = 7
@@ -48,8 +52,10 @@ class CitysShow(object):
             group_box_high += 160
 
             city_index = QtWidgets.QLabel(getattr(self, "groupBox" + k))
-            city_index.setGeometry(QtCore.QRect(20, 30, 21, 31))
+            city_index.setGeometry(QtCore.QRect(15, 30, 28, 31))
             city_index.setObjectName("cityIndex_" + k)
+            city_index.setStyleSheet("QLabel{color:#e76464;}")
+            city_index.setFont(QFont("Arial", 20, QFont.Normal))
             setattr(self, "cityIndex" + k, city_index)
             for num, name in enumerate(v):
                 city_label = MyLabel(getattr(self, "groupBox" + k, None), window)
@@ -111,8 +117,10 @@ class Ui_AllCitys(object):
 
         for i, letter in enumerate(string.ascii_uppercase):
             letter_label = QtWidgets.QLabel(Form)
-            letter_label.setGeometry(QtCore.QRect(220 + i * 25, 110, 16, 16))
+            letter_label.setGeometry(QtCore.QRect(200 + i * 25, 110, 16, 16))
             letter_label.setObjectName("letter_"+letter)
+            letter_label.setFont(QFont("Arial", 10, QFont.Normal))
+            letter_label.setStyleSheet(" QLabel{border-radius:15px;background:gray;}")
             setattr(self, "letter_" + letter, letter_label)
 
         self.retranslateUi(Form)

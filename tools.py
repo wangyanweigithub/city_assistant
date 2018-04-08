@@ -6,6 +6,18 @@ from PyQt5 import QtWidgets
 from setting import PathHelp
 
 
+class ScroLable(QtWidgets.QLabel):
+    def __init__(self, parent=None):
+        super(ScroLable, self).__init__(parent)
+        self.setStyleSheet("QLabel{ background: #EEE8CD}")
+        self.setAlignment(Qt.AlignCenter)
+
+    def mouseReleaseEvent(self, QMouseEvent):
+        if self.choosed:
+            self.setStyleSheet("QLabel{background: #e76464;}")
+        else:
+            self.setStyleSheet("QLabel{ background: #EEE8CD}")
+
 
 class ButtonLabel(QtWidgets.QLabel):
 
