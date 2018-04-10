@@ -6,15 +6,16 @@
 #
 # WARNING! All changes made in this file will be lost!
 from PyQt5 import QtCore, QtGui, QtWidgets
-from tools import get_all_community, ButtonLabel, dele_files_from_scrapy_result
+from tools import get_all_community, ButtonLabel, dele_files_from_scrapy_result, add_city_area_item
+
 
 class Ui_Result_Srcapy(object):
-    def setupUi(self, Form):
+    def setupUi(self, Form, city, area):
         Form.setObjectName("Form")
         Form.resize(1100, 900)
         self.form = Form
-        self.city = "荆门"
-        self.area = "东宝区"
+        self.city = city
+        self.area = area
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 1100, 41))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -42,11 +43,10 @@ class Ui_Result_Srcapy(object):
         self.comboBox = QtWidgets.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(45, 50, 91, 31))
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
         self.comboBox_2 = QtWidgets.QComboBox(Form)
         self.comboBox_2.setGeometry(QtCore.QRect(185, 50, 91, 31))
         self.comboBox_2.setObjectName("comboBox_2")
-        self.comboBox_2.addItem("")
+        self.add_city_area_item()
         self.pushButton = QtWidgets.QPushButton(Form)
         self.pushButton.setGeometry(QtCore.QRect(214, 110, 91, 31))
         self.pushButton.setObjectName("pushButton")
@@ -111,8 +111,6 @@ class Ui_Result_Srcapy(object):
         self.label_3.setText(_translate("Form", "12345678900"))
         self.label_4.setText(_translate("Form", "切换用户"))
         self.label_5.setText(_translate("Form", "--" * 100))
-        self.comboBox.setItemText(0, _translate("Form", "杭州"))
-        self.comboBox_2.setItemText(0, _translate("Form", "滨江区"))
         self.pushButton.setText(_translate("Form", "全部"))
         self.pushButton_2.setText(_translate("Form", "房天下"))
         self.pushButton_3.setText(_translate("Form", "腾讯房产"))
@@ -137,7 +135,7 @@ class Ui_Result_Srcapy(object):
             self.form.close()
             self.dele_files()
             new_window = QtWidgets.QDialog()
-            self.setupUi(new_window)
+            self.setupUi(new_window, self.city, self.area)
             new_window.exec()
         else:
             print("Not dele file")
@@ -150,4 +148,8 @@ class Ui_Result_Srcapy(object):
 
         print(dele_files)
         dele_files_from_scrapy_result(dele_files, self.city, self.area)
+
+    def add_city_area_item(self):
+        area_name = add_city_area_item(self, self.city)
+        self.area_name = area_name
 

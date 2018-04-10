@@ -10,12 +10,14 @@ from subprocess import Popen
 from PyQt5 import QtCore, QtWidgets
 from setting import Common, PathHelp
 from scrapy_city import Ui_Scrapy
+from tools import add_city_area_item
 
 
 class Ui_Area(object):
-    def setupUi(self, Form, city="杭州"):
+    def setupUi(self, Form, city):
         Form.setObjectName("Form")
         Form.resize(796, 563)
+        self.city = city
         self.form = Form
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 791, 41))
@@ -67,18 +69,14 @@ class Ui_Area(object):
         self.pushButton_3.clicked.connect(lambda: self.choose_source(self.pushButton_3.text()))
         self.pushButton_4.clicked.connect(lambda: self.choose_source(self.pushButton_4.text()))
 
-        self.add_city_area_item(city)
+        self.add_city_area_item()
+        self.comboBox.activated['QString'].connect(self.on_activated)
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def add_city_area_item(self, city):
-        _translate = QtCore.QCoreApplication.translate
-        areas = Common.areas.get(city)
-        self.comboBox.addItem("")
-        self.comboBox.setItemText(0, _translate("Form", city))
-        for num, area in enumerate(areas):
-            self.comboBox_2.addItem("")
-            self.comboBox_2.setItemText(num, _translate("Form", area))
+    def add_city_area_item(self):
+        area_name = add_city_area_item(self, self.city)
+        self.area_name = area_name
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -100,11 +98,10 @@ class Ui_Area(object):
             self.start_scrapy(source)
 
     def start_scrapy(self, source):
-        # conf = os.path.join(PathHelp.tencent_path, "conf.txt")
-        # with open(conf, 'w') as f:
-        #     f.write("hello\n")
-        code = Popen("python start.py", cwd=PathHelp.tencent_path)
-        # code = Popen("python a.py", cwd=PathHelp.tencent_path)
+        command = "python start.py %s %s" % (self.city, self.area_name)
+        # command = "python a.py %s %s" % (self.city, self.area_name)
+        print(command)
+        code = Popen(command, cwd=PathHelp.tencent_path)
         if code.returncode:
             raise("Scrapy Wrong")
         print("pid is ", code.pid)
@@ -112,8 +109,11 @@ class Ui_Area(object):
         self.form.close()
         self.wati_scrapy = QtWidgets.QDialog()
         scrapy_ui = Ui_Scrapy()
-        scrapy_ui.setupUi(self.wati_scrapy, code.pid)
+        scrapy_ui.setupUi(self.wati_scrapy, code.pid, self.city, self.area_name)
         self.wati_scrapy.exec()
+
+    def on_activated(self, area_name):
+        self.area_name = area_name
 
 
 

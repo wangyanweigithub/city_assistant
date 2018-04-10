@@ -10,11 +10,14 @@ from PyQt5 import QtCore, QtWidgets
 from search_result import Ui_Result_Srcapy
 from tools import get_pid_finish
 from PyQt5.QtCore import QTimer
+from tools import add_city_area_item
 
 class Ui_Scrapy(object):
-    def setupUi(self, Form, pid):
+    def setupUi(self, Form, pid, city, area):
         Form.setObjectName("Form")
         Form.resize(652, 561)
+        self.city = city
+        self.area = area
         self.form = Form
         self.scrapy_pid = pid
         self.frame = QtWidgets.QFrame(Form)
@@ -41,11 +44,10 @@ class Ui_Scrapy(object):
         self.comboBox = QtWidgets.QComboBox(Form)
         self.comboBox.setGeometry(QtCore.QRect(50, 70, 81, 31))
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
         self.comboBox_2 = QtWidgets.QComboBox(Form)
         self.comboBox_2.setGeometry(QtCore.QRect(190, 72, 81, 31))
         self.comboBox_2.setObjectName("comboBox_2")
-        self.comboBox_2.addItem("")
+        self.add_city_area_item()
         self.label_5 = QtWidgets.QLabel(Form)
         self.label_5.setGeometry(QtCore.QRect(0, 40, 761, 16))
         self.label_5.setObjectName("label_5")
@@ -86,8 +88,6 @@ class Ui_Scrapy(object):
         self.label_2.setText(_translate("Form", "用户名："))
         self.label_3.setText(_translate("Form", "12345678901"))
         self.label_4.setText(_translate("Form", "切换账户"))
-        self.comboBox.setItemText(0, _translate("Form", "杭州"))
-        self.comboBox_2.setItemText(0, _translate("Form", "滨江区"))
         self.label_5.setText(_translate("Form", "---------" * 50))
         self.pushButton.setText(_translate("Form", "全部"))
         self.pushButton_2.setText(_translate("Form", "腾讯房产"))
@@ -104,10 +104,12 @@ class Ui_Scrapy(object):
         self.form.close()
         scrapy_result = QtWidgets.QDialog()
         scrapy_ui = Ui_Result_Srcapy()
-        scrapy_ui.setupUi(scrapy_result)
+        scrapy_ui.setupUi(scrapy_result, self.city, self.area_name)
         scrapy_result.exec()
 
-
+    def add_city_area_item(self):
+        area_name = add_city_area_item(self, self.city)
+        self.area_name = area_name
 
 
 

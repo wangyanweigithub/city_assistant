@@ -63,8 +63,8 @@ class Ui_Dialog(object):
     def login(self):
         account_input = self.account.text()
         passwd_input = self.password.text()
-        remote = RemoteServer("http://mcenterv2.thd99.com/V2/pythonApi/sign")
-        status, message = remote.login(account_input, passwd_input)
+        # remote = RemoteServer("http://mcenterv2.thd99.com/V2/pythonApi/sign")
+        # status, message = remote.login(account_input, passwd_input)
         if not True:
             print(message)
             self.acount_error_label.setText("* 账户错误")

@@ -48,7 +48,7 @@ class Common(object):
 
     data_source = {"腾讯房产": "dbhouse", "房天下": "", "透明售房": ""}
 
-    areas = {"杭州":["滨江区", "余杭区", "西湖区"]}
+    areas = {"杭州":["滨江区", "余杭区", "西湖区"], "北京": ["朝阳", "天安门"], "池州":["东至"]}
 
 
 class PathHelp(object):
