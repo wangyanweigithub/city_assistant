@@ -70,7 +70,7 @@ class Ui_Area(object):
         self.pushButton_4.clicked.connect(lambda: self.choose_source(self.pushButton_4.text()))
 
         self.add_city_area_item()
-        self.comboBox.activated['QString'].connect(self.on_activated)
+        self.comboBox_2.activated['QString'].connect(self.on_activated)
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -106,11 +106,14 @@ class Ui_Area(object):
             raise("Scrapy Wrong")
         print("pid is ", code.pid)
 
-        self.form.close()
-        self.wati_scrapy = QtWidgets.QDialog()
-        scrapy_ui = Ui_Scrapy()
-        scrapy_ui.setupUi(self.wati_scrapy, code.pid, self.city, self.area_name)
-        self.wati_scrapy.exec()
+        try:
+            self.form.close()
+            self.wati_scrapy = QtWidgets.QDialog()
+            scrapy_ui = Ui_Scrapy()
+            scrapy_ui.setupUi(self.wati_scrapy, code.pid, self.city, self.area_name)
+            self.wati_scrapy.exec()
+        except Exception as e:
+            print(e)
 
     def on_activated(self, area_name):
         self.area_name = area_name

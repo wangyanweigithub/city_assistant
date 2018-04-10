@@ -9,6 +9,8 @@ from PyQt5.QtGui import QFont
 from setting import Common
 from PyQt5.QtCore import pyqtSignal
 from area import Ui_Area
+from tools import get_earas
+from PyQt5.QtWidgets import QMessageBox
 
 
 class MyLabel(QtWidgets.QLabel):
@@ -143,10 +145,13 @@ class Ui_AllCitys(object):
         self.citys_show.retranslateUi(Form)
 
     def choose_city(self, city):
-        self.Form.close()
-        area = QtWidgets.QDialog()
-        area_ui = Ui_Area()
-        area_ui.setupUi(area, city)
-        area.exec()
-        # print("closed", name)
+        if not get_earas(city):
+            reply = QMessageBox.warning(self.Form,
+                                        "warning", "暂时不支持这个城市", QMessageBox.Yes | QMessageBox.No)
+        else:
+            self.Form.close()
+            area = QtWidgets.QDialog()
+            area_ui = Ui_Area()
+            area_ui.setupUi(area, city)
+            area.exec()
 

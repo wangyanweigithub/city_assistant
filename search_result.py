@@ -150,6 +150,6 @@ class Ui_Result_Srcapy(object):
         dele_files_from_scrapy_result(dele_files, self.city, self.area)
 
     def add_city_area_item(self):
-        area_name = add_city_area_item(self, self.city)
-        self.area_name = area_name
+        add_city_area_item(self, self.city)
+        self.comboBox_2.setCurrentText(self.area)
 

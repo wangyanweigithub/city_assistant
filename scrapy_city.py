@@ -47,6 +47,7 @@ class Ui_Scrapy(object):
         self.comboBox_2 = QtWidgets.QComboBox(Form)
         self.comboBox_2.setGeometry(QtCore.QRect(190, 72, 81, 31))
         self.comboBox_2.setObjectName("comboBox_2")
+        self.comboBox_2.setCurrentText(self.area)
         self.add_city_area_item()
         self.label_5 = QtWidgets.QLabel(Form)
         self.label_5.setGeometry(QtCore.QRect(0, 40, 761, 16))
@@ -104,12 +105,13 @@ class Ui_Scrapy(object):
         self.form.close()
         scrapy_result = QtWidgets.QDialog()
         scrapy_ui = Ui_Result_Srcapy()
-        scrapy_ui.setupUi(scrapy_result, self.city, self.area_name)
+        scrapy_ui.setupUi(scrapy_result, self.city, self.area)
         scrapy_result.exec()
 
     def add_city_area_item(self):
-        area_name = add_city_area_item(self, self.city)
-        self.area_name = area_name
+        add_city_area_item(self, self.city)
+        self.comboBox_2.setCurrentText(self.area)
+
 
 
 

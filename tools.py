@@ -44,6 +44,8 @@ def get_pid_finish(pid):
 
 def get_all_community(city, area):
     path = os.path.join(PathHelp.tencent_result, city, area)
+    if not os.path.exists(path):
+        return []
     return os.listdir(path)
 
 def dele_files_from_scrapy_result(files, city, area, path=PathHelp.tencent_result):
@@ -57,10 +59,14 @@ def dele_files_from_scrapy_result(files, city, area, path=PathHelp.tencent_resul
 
 def add_city_area_item(Form, city, city_box="comboBox", area_box="comboBox_2"):
     _translate = QtCore.QCoreApplication.translate
-    areas = Common.areas.get(city)
+    areas = get_earas(city)
     getattr(Form, city_box).addItem("")
     getattr(Form, city_box).setItemText(0, _translate("Form", city))
     for num, area in enumerate(areas):
         getattr(Form, area_box).addItem("")
         getattr(Form, area_box).setItemText(num, _translate("Form", area))
     return areas[0]
+
+def get_earas(city):
+    areas = Common.areas.get(city)
+    return areas
